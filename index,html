@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<body>
+<div data-ng-app="market">
+    <div data-ng-controller="SomeController">
+    	<input type="text" data-ng-model="fname">
+        {{fname}}
+        <ul>
+            <li data-ng-repeat="f in fish | myFilter:this">
+                {{f}}
+            </li>
+        </ul>
+
+    </div>    
+</div>
+
+<script>
+var app = angular.module('market', []);
+
+app.filter('myFilter', function() {
+	return function(x, $scope) {
+    	var i=0, count=0;
+    	for (;i<x.Col0.tags.length)
+	    {	if (x.Col0.tags[i] == $scope.fname) {
+        		count=1;
+                }
+        }
+        if (count == 1)
+        {	return x;
+        } else {
+        	return null;
+        }
+    }
+});
+
+app.controller('SomeController', function($scope, $filter) {
+     $scope.fish = [{
+        "Col0": {
+            "Name": "McKinsey",
+            "Tags": "finance, Day 0"
+        },
+        "Cols": [{
+                "ColHeader": "Information",
+                "Items": [{
+                        "Header": "About",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "Contact",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "Locations",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            },
+            {
+                "ColHeader": "Market Analysis",
+                "Items": [{
+                        "Header": "Openings",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "% Change",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            },
+            {
+                "ColHeader": "Alumni Presence",
+                "Items": [{
+                    "Header": "Latest",
+                    "List": ["L1", "L2", "L3"]
+                }]
+            },
+            {
+                "ColHeader": "Notes",
+                "Items": [{
+                        "Header": "2017",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "2016",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "2015",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Col0": {
+            "Name": "Cognizant",
+            "Tags": "consultancy, Day 1"
+        },
+        "Cols": [{
+                "ColHeader": "Information",
+                "Items": [{
+                        "Header": "About",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "Contact",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "Locations",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            },
+            {
+                "ColHeader": "Market Analysis",
+                "Items": [{
+                        "Header": "Openings",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "% Change",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            },
+            {
+                "ColHeader": "Alumni Presence",
+                "Items": [{
+                    "Header": "Latest",
+                    "List": ["L1", "L2", "L3"]
+                }]
+            },
+            {
+                "ColHeader": "Notes",
+                "Items": [{
+                        "Header": "2017",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "2016",
+                        "List": ["L1", "L2", "L3"]
+                    },
+                    {
+                        "Header": "2015",
+                        "List": ["L1", "L2", "L3"]
+                    }
+                ]
+            }
+        ]
+    }
+]
+     
+});
+
+</script>
+
+</body>
+
+</html>
