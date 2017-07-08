@@ -72,9 +72,29 @@ input[type=submit]:hover {
 
 </style>
 
+<script type="text/javascript">
+    function check()
+    {
+    var a=document.forms["Form"]["name"].value;
+    var b=document.forms["Form"]["rollno"].value;
+    var c=document.forms["Form"]["specialization"].value;
+    var d=document.forms["Form"]["research"].value;
+    var d=document.forms["Form"]["abstract"].value;
+    var d=document.forms["Form"]["publications"].value;
+    var d=document.forms["Form"]["subtext1"].value;
+    var d=document.forms["Form"]["subtext2"].value;
+    var d=document.forms["Form"]["subtext3"].value;
+    if (a==null || a=="" || b==null || b=="" || c==null || c=="" || d==null || d=="" || e==null || e=="" || f==null || f=="" || g==null || g=="" || h==null || h=="" || i==null || i=="")
+      {
+      alert("Please Fill All Required Field");
+      return false;
+      }
+    }
+</script>
+
 <body style="background-color:#ddd">
 <div style="max-width: 900px; width: 100%; margin: 0 auto; position: relative; background-color:lightblue; border: 1px solid grey;">
-	<form action="submit.php" method="post" enctype="multipart/form-date">
+	<form action="submit.php" method="post" enctype="multipart/form-date" onsubmit="return check()" name="Form">
 	<center>
 	<table>
 		<tr>
