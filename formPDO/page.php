@@ -16,54 +16,47 @@ th {padding: 10px;}
 <body>  
 
 <?php
+
+class TableRows extends RecursiveIteratorIterator { 
+    function __construct($it) { 
+        parent::__construct($it, self::LEAVES_ONLY); 
+    }
+}
+
 // define variables and set to empty values
 $servername= "localhost";
 $username="root";
 $password="";
-$dbname="test";
 
-$conn = new mysqli($servername,$username,$password,$dbname);
-
-if ($conn->connect_error)
-{
-	die("No network!" . $conn->connect_error);
-}
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=test", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
   $rollno = $_GET["rollno"];
 }
 
-$sql ="SELECT * FROM collection WHERE rollno='$rollno'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0 )
-{
-	while($row=$result->fetch_assoc())
-	{
-		$name=$row["name"];
-		setcookie('name', $name, time() + (86400 * 30), "/");
+	$sql ="SELECT * FROM collection WHERE rollno='$rollno'";
+	foreach ($conn->query($sql) as $row) {
+		$name = $row['name'];
 		$specialization=$row["specialization"];
-		setcookie('specialization', $specialization, time() + (86400 * 30), "/");
 		$research=$row["research"];
-		setcookie('research', $research, time() + (86400 * 30), "/");
 		$abstract=$row["abstract"];
-		setcookie('abstract', $abstract, time() + (86400 * 30), "/");
 		$publications=$row["publications"];
-		setcookie('publications', $publications, time() + (86400 * 30), "/");
 		$awards=$row["awards"];
-		setcookie('awards', $awards, time() + (86400 * 30), "/");
 		$subtext1=$row["subtext1"];
-		setcookie('subtext1', $subtext1, time() + (86400 * 30), "/");
 		$subtext2=$row["subtext2"];
-		setcookie('subtext2', $subtext2, time() + (86400 * 30), "/");
 		$subtext3=$row["subtext3"];
-		setcookie('subtext3', $subtext3, time() + (86400 * 30), "/");
 	}
-}else {
-	echo "Details not available!";
-	die();
 }
-$conn->close();	
 
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+$conn = null;
 
 ?>
 
