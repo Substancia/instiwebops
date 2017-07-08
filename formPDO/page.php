@@ -1,4 +1,8 @@
 <!DOCTYPE HTML>  
+<?php
+session_start();
+?>
+
 <html>
 <head>
 	<title>Page</title>
@@ -102,7 +106,7 @@ $conn = null;
 				<div class="col-sm-4">
 					<div style="background-color:pink; text-align:center; max-width:290px; box-shadow: 10px 10px 5px #888888;">
 						<div>
-							<img id="blah1" src="images\<?php echo $rollno."_1";?>" alt="your image" height="200px" style="visibility:hidden"/>
+							<img id="blah1" src="images\<?php echo $rollno."_1.".$_SESSION['file_ext1'];?>" alt="your image" height="200px" style="visibility:hidden"/>
 						</div>
 						<label><?php echo $subtext1;?></label>
 					</div>
@@ -111,7 +115,7 @@ $conn = null;
 				<div class="col-sm-4">
 					<div style="background-color:pink; text-align:center; max-width:290px; box-shadow: 10px 10px 5px #888888;">
 						<div>
-							<img id="blah2" src="images\<?php echo $rollno."_2";?>" alt="your image" height="200px" style="visibility:hidden"/>
+							<img id="blah2" src="images\<?php echo $rollno."_2.".$_SESSION['file_ext2'];?>" alt="your image" height="200px" style="visibility:hidden"/>
 						</div>
 						<label><?php echo $subtext2;?></label>
 					</div>
@@ -120,7 +124,7 @@ $conn = null;
 				<div class="col-sm-4">
 					<div style="background-color:pink; text-align:center; max-width:290px; box-shadow: 10px 10px 5px #888888;">
 						<div>
-							<img id="blah3" src="images\<?php echo $rollno."_3";?>" alt="your image" height="200px" style="visibility:hidden"/>
+							<img id="blah3" src="images\<?php echo $rollno."_3.".$_SESSION['file_ext3'];?>" alt="your image" height="200px" style="visibility:hidden"/>
 						</div>
 						<label><?php echo $subtext3;?></label>
 					</div>

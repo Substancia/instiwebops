@@ -1,5 +1,8 @@
 <?php 
 
+session_start();
+
+if(isset($_POST['login'])) {
 $servername= "localhost";
 $username="root";
 $password="";
@@ -26,7 +29,7 @@ $subtext3=$_POST["subtext3"];
     $file_size = $_FILES['image1']['size'];
     $file_tmp = $_FILES['image1']['tmp_name'];
     $file_type = $_FILES['image1']['type'];
-//    $file_ext=strtolower(end(explode('.',$_FILES['image1']['name'])));
+    $_SESSION["file_ext1"]=strtolower(end(explode('.',$_FILES['image1']['name'])));
 
 //    $expensions= array("jpg","jpeg","png");
 
@@ -36,8 +39,8 @@ $subtext3=$_POST["subtext3"];
 //	}
 //	if(empty($errors)==true)
 //	{
-		echo "Hello world";
-		move_uploaded_file($file_tmp,"images/".$rollno."_1.".$file_ext);
+//		echo "Hello world";
+		move_uploaded_file($file_tmp,"images/".$rollno."_1.".$_SESSION["file_ext1"]);
 		echo "image1 success!";
 //	}else{
 //		print_r($errors);
@@ -47,7 +50,7 @@ $subtext3=$_POST["subtext3"];
     $file_size = $_FILES['image2']['size'];
     $file_tmp = $_FILES['image2']['tmp_name'];
     $file_type = $_FILES['image2']['type'];
-//    $file_ext=strtolower(end(explode('.',$_FILES['image2']['name'])));
+     $_SESSION["file_ext2"]=strtolower(end(explode('.',$_FILES['image2']['name'])));
 
 //    $expensions= array("jpg","jpeg","png");
 
@@ -57,7 +60,7 @@ $subtext3=$_POST["subtext3"];
 //	}
 //	if(empty($errors)==true)
 //	{
-		move_uploaded_file($file_tmp,"images/".$rollno."_2.".$file_ext);
+		move_uploaded_file($file_tmp,"images/".$rollno."_2.".$_SESSION["file_ext2"]);
 		echo "image2 success!";
 //	}else{
 //		print_r($errors);
@@ -67,7 +70,7 @@ $subtext3=$_POST["subtext3"];
     $file_size = $_FILES['image3']['size'];
     $file_tmp = $_FILES['image3']['tmp_name'];
     $file_type = $_FILES['image3']['type'];
-//    $file_ext=strtolower(end(explode('.',$_FILES['image3']['name'])));
+ $_SESSION["file_ext3"]=strtolower(end(explode('.',$_FILES['image3']['name'])));
 
 //   $expensions= array("jpg","jpeg","png");
 
@@ -77,7 +80,7 @@ $subtext3=$_POST["subtext3"];
 //	}
 //	if(empty($errors)==true)
 //	{
-		move_uploaded_file($file_tmp,"images/".$rollno."_3.".$file_ext);
+		move_uploaded_file($file_tmp,"images/".$rollno."_3.".$_SESSION["file_ext3"]);
 		echo "image3 success!";
 //	}else{
 //		print_r($errors);
@@ -98,6 +101,6 @@ catch(PDOException $e)
     }
 
 $conn = null;
-
+}
 ?>
 
